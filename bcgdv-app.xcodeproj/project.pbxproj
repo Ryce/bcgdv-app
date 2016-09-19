@@ -21,6 +21,7 @@
 		DA77C3651D906201003B4D79 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA77C3641D906201003B4D79 /* LoginViewController.swift */; };
 		DA77C3671D906EB5003B4D79 /* StoryboardInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA77C3661D906EB5003B4D79 /* StoryboardInitializable.swift */; };
 		DA77C36A1D908471003B4D79 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA77C3691D908471003B4D79 /* UIImage+Size.swift */; };
+		DA77C36C1D908AE0003B4D79 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA77C36B1D908AE0003B4D79 /* UIViewController+Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		DA77C3641D906201003B4D79 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DA77C3661D906EB5003B4D79 /* StoryboardInitializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInitializable.swift; sourceTree = "<group>"; };
 		DA77C3691D908471003B4D79 /* UIImage+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Size.swift"; sourceTree = "<group>"; };
+		DA77C36B1D908AE0003B4D79 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				DA77C3691D908471003B4D79 /* UIImage+Size.swift */,
+				DA77C36B1D908AE0003B4D79 /* UIViewController+Alert.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				DA77C32E1D904DE7003B4D79 /* ViewController.swift in Sources */,
 				DA77C3671D906EB5003B4D79 /* StoryboardInitializable.swift in Sources */,
 				DA77C32C1D904DE7003B4D79 /* AppDelegate.swift in Sources */,
+				DA77C36C1D908AE0003B4D79 /* UIViewController+Alert.swift in Sources */,
 				DA77C35F1D904E7A003B4D79 /* Result.swift in Sources */,
 				DA77C3631D904F04003B4D79 /* Token.swift in Sources */,
 				DA77C3611D904EB3003B4D79 /* User.swift in Sources */,

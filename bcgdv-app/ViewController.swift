@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var imageView: UIImageView!
     
-    @IBOutlet var usernameLabel: UILabel!
+    @IBOutlet var emailLabel: UILabel!
     @IBOutlet var passwordLabel: UILabel!
     
     let session = Session()
@@ -29,11 +29,12 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if getToken() == nil {
-            let loginViewController = LoginViewController.instantiateFromStoryboard()
+            let loginNavigationController = LoginNavigationViewController.instantiateFromStoryboard()
+            guard let loginViewController = loginNavigationController.viewControllers[0] as? LoginViewController else { fatalError() }
             loginViewController.delegate = self
             loginViewController.session = self.session
             
-            self.present(loginViewController, animated: true, completion: nil)
+            self.present(loginNavigationController, animated: true, completion: nil)
         }
     }
     
@@ -71,7 +72,7 @@ extension ViewController: LoginViewControllerDelegate {
     
     func loginViewController(viewController: LoginViewController, didLoginWithUser user: User) {
         self.user = user
-        self.usernameLabel.text = self.user?.email
+        self.emailLabel.text = self.user?.email
         self.passwordLabel.text = self.user?.password
         self.dismiss(animated: true, completion: nil)
     }
@@ -86,6 +87,18 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage else { return } // BAIL
         self.imageView.image = chosenImage
+        
+        let resizedImage = chosenImage.resizeWith(width: 600)!
+        
+        self.session.updateUserAvatar(withUser: self.user!, avatar: resizedImage, completion: ({ result in
+            switch result {
+            case .success(let user):
+                self.user = user
+                // TODO: update interface
+            case .failure(let error):
+                self.showAlert(error.localizedDescription)
+            }
+        }))
         
         self.dismiss(animated: true, completion: nil)
     }

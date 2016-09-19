@@ -26,7 +26,7 @@
                                     <constraint firstAttribute="width" priority="800" constant="200" id="xby-wc-CMO"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ID9-47-01b">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ID9-47-01b">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="76" id="v2X-by-5gg"/>
                                 </constraints>
@@ -72,9 +72,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailLabel" destination="VSl-14-c4j" id="ozK-Xp-afQ"/>
                         <outlet property="imageView" destination="bcM-Fp-MAd" id="RBP-j8-C2N"/>
                         <outlet property="passwordLabel" destination="t8C-Kg-N8M" id="265-kb-tX6"/>
-                        <outlet property="usernameLabel" destination="VSl-14-c4j" id="blr-vQ-beF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -83,7 +83,7 @@
         <!--Login-->
         <scene sceneID="oCz-F0-aNU">
             <objects>
-                <tableViewController id="MCK-9l-Rvs" customClass="LoginViewController" customModule="bcgdv_app" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LoginViewController" id="MCK-9l-Rvs" customClass="LoginViewController" customModule="bcgdv_app" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="rjO-5V-QJp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -98,7 +98,7 @@
                                             <frame key="frameInset" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQq-ka-HXK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQq-ka-HXK">
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -109,7 +109,7 @@
                                                     </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -133,13 +133,13 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3B9-fA-hln">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3B9-fA-hln">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="bSx-L9-T8N"/>
                                                     </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -172,18 +172,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="emailTextField" destination="1Jr-Q7-Jh6" id="Hjy-OJ-zYC"/>
                         <outlet property="passwordTextField" destination="3B9-fA-hln" id="xcH-ag-3VV"/>
-                        <outlet property="userNameTextField" destination="1Jr-Q7-Jh6" id="WzL-B5-dpM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6J-IT-eN3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="33" y="857"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Login Navigation View Controller-->
         <scene sceneID="KfO-Xb-dmP">
             <objects>
-                <navigationController id="Tys-mt-u8F" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginNavigationViewController" id="Tys-mt-u8F" customClass="LoginNavigationViewController" customModule="bcgdv_app" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YyH-ft-OPm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
