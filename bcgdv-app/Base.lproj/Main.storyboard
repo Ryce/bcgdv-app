@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="bcM-Fp-MAd">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_avatar" translatesAutoresizingMaskIntoConstraints="NO" id="bcM-Fp-MAd">
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bcM-Fp-MAd" secondAttribute="height" multiplier="1:1" id="v0a-Vg-i4P"/>
                                     <constraint firstAttribute="width" priority="800" constant="200" id="xby-wc-CMO"/>
@@ -73,6 +73,8 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="bcM-Fp-MAd" id="RBP-j8-C2N"/>
+                        <outlet property="passwordLabel" destination="t8C-Kg-N8M" id="265-kb-tX6"/>
+                        <outlet property="usernameLabel" destination="VSl-14-c4j" id="blr-vQ-beF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

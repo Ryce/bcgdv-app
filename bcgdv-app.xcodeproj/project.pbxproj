@@ -20,6 +20,7 @@
 		DA77C3631D904F04003B4D79 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA77C3621D904F04003B4D79 /* Token.swift */; };
 		DA77C3651D906201003B4D79 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA77C3641D906201003B4D79 /* LoginViewController.swift */; };
 		DA77C3671D906EB5003B4D79 /* StoryboardInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA77C3661D906EB5003B4D79 /* StoryboardInitializable.swift */; };
+		DA77C36A1D908471003B4D79 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA77C3691D908471003B4D79 /* UIImage+Size.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		DA77C3621D904F04003B4D79 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		DA77C3641D906201003B4D79 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DA77C3661D906EB5003B4D79 /* StoryboardInitializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInitializable.swift; sourceTree = "<group>"; };
+		DA77C3691D908471003B4D79 /* UIImage+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Size.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				DA77C35B1D904E5B003B4D79 /* ViewController */,
 				DA77C35A1D904E57003B4D79 /* View */,
 				DA77C3591D904E52003B4D79 /* Model */,
+				DA77C3681D90845D003B4D79 /* Extensions */,
 				DA77C32B1D904DE7003B4D79 /* AppDelegate.swift */,
 				DA77C3321D904DE7003B4D79 /* Assets.xcassets */,
 				DA77C3341D904DE7003B4D79 /* LaunchScreen.storyboard */,
@@ -165,6 +168,14 @@
 				DA77C32F1D904DE7003B4D79 /* Main.storyboard */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		DA77C3681D90845D003B4D79 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DA77C3691D908471003B4D79 /* UIImage+Size.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA77C36A1D908471003B4D79 /* UIImage+Size.swift in Sources */,
 				DA77C3651D906201003B4D79 /* LoginViewController.swift in Sources */,
 				DA77C32E1D904DE7003B4D79 /* ViewController.swift in Sources */,
 				DA77C3671D906EB5003B4D79 /* StoryboardInitializable.swift in Sources */,

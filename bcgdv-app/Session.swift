@@ -14,6 +14,7 @@ enum SessionError: Error {
     case parsingError
     case imageParsingError
     case tokenPresistencyError
+    case tokenNotAvailableError
 }
 
 struct Session {
@@ -47,15 +48,15 @@ struct Session {
                     return // BAIL
                 }
                 
-                guard let json = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String : Any] else {
+                guard let json = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String : String] else {
                     DispatchQueue.main.async {
                         completion(.failure(SessionError.jsonParsingError))
                     }
                     return // BAIL
                 }
                 
-                guard let userID = json["userid"] as? String,
-                    let token = json["token"] as? String else {
+                guard let userID = json["userid"],
+                    let token = json["token"] else {
                     DispatchQueue.main.async {
                         completion(.failure(SessionError.jsonParsingError))
                     }
@@ -82,12 +83,21 @@ struct Session {
     }
     
     
-    func getUser(withUserID userID: String, completion: @escaping (Result<User>) -> Void) {
+    func getUser(withUser user: User, completion: @escaping (Result<User>) -> Void) {
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
-            let urlString = self.endpoint + "/users/" + userID
+            let urlString = self.endpoint + "/users/" + user.userID
             guard let url = URL(string: urlString) else { fatalError("a valid URL must be provided") }
             
-            let urlRequest = URLRequest(url: url)
+            var urlRequest = URLRequest(url: url)
+            
+            guard let token = getToken() else {
+                DispatchQueue.main.async {
+                    completion(.failure(SessionError.tokenNotAvailableError))
+                }
+                return // BAIL
+            }
+            
+            urlRequest.allHTTPHeaderFields = ["Bearer":token]
             
             let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 if let error = error {
@@ -104,24 +114,21 @@ struct Session {
                     return // BAIL
                 }
                 
-                guard let json = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String : Any] else {
+                guard let json = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String : String],
+                    let avatarURLString = json["avatar_url"],
+                    let email = json["email"] else {
                     DispatchQueue.main.async {
                         completion(.failure(SessionError.jsonParsingError))
                     }
                     return // BAIL
                 }
                 
-                let transactions = User() // TODO:
-                
-                guard transactions.count != 0 else {
-                    DispatchQueue.main.async {
-                        completion(.failure(SessionError.parsingError))
-                    }
-                    return // BAIL
-                }
+                var mutableUser = user
+                mutableUser.avatarURLString = avatarURLString
+                mutableUser.email = email
                 
                 DispatchQueue.main.async {
-                    completion(.success(transactions))
+                    completion(.success(mutableUser))
                 }
                 
             }
@@ -131,13 +138,22 @@ struct Session {
     }
     
     
-    func updateUserAvatar(withUserID userID: String, avatar: UIImage, completion: @escaping (Result<User>) -> Void) {
+    func updateUserAvatar(withUser user: User, avatar: UIImage, completion: @escaping (Result<User>) -> Void) {
         DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
-            let urlString = self.endpoint + "/users/" + userID + "/avatar"
+            let urlString = self.endpoint + "/users/" + user.userID + "/avatar"
             guard let url = URL(string: urlString) else { fatalError("a valid URL must be provided") }
             
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "POST"
+            
+            guard let token = getToken() else {
+                DispatchQueue.main.async {
+                    completion(.failure(SessionError.tokenNotAvailableError))
+                }
+                return // BAIL
+            }
+            
+            urlRequest.allHTTPHeaderFields = ["Bearer":token]
             
             guard let imageData = UIImageJPEGRepresentation(avatar, 0.8) else {
                 completion(.failure(SessionError.imageParsingError))
@@ -167,24 +183,19 @@ struct Session {
                     return // BAIL
                 }
                 
-                guard let json = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String : Any] else {
+                guard let json = (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String : String],
+                    let avatarURLString = json["avatar_url"] else {
                     DispatchQueue.main.async {
                         completion(.failure(SessionError.jsonParsingError))
                     }
                     return // BAIL
                 }
                 
-                let transactions = User() // TODO:
-                
-                guard transactions.count != 0 else {
-                    DispatchQueue.main.async {
-                        completion(.failure(SessionError.parsingError))
-                    }
-                    return // BAIL
-                }
+                var mutableUser = user
+                mutableUser.avatarURLString = avatarURLString
                 
                 DispatchQueue.main.async {
-                    completion(.success(transactions))
+                    completion(.success(mutableUser))
                 }
                 
             }

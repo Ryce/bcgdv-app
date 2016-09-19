@@ -11,9 +11,10 @@ import Foundation
 let loggedInUserKey = "com.ryce.bcgdv-app.userpersistencykey"
 
 struct User {
-    let email: String? = nil
+    var email: String? = nil
+    var password: String? = nil
     let userID: String
-    let avatarURLString: String? = nil
+    var avatarURLString: String? = nil
     
     var avatarURL: URL? {
         get {
